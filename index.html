@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MySQL Scripter</title>
+    <link rel="stylesheet" href="assets/js/jquery/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/js/jquery/snippet/jquery.snippet.min.css">
+    <link rel="stylesheet" href="assets/css/scripter.css">
+    <script src="assets/js/jquery/jquery.js"></script>
+    <script src="assets/js/jquery/jquery-ui.min.js"></script>
+    <script src="assets/js/jquery/jquery.validate.min.js"></script>
+    <script src="assets/js/jquery/jquery.tmpl.min.js"></script>
+    <script src="assets/js/jquery/snippet/jquery.snippet.min.js"></script>
+    <script src="assets/js/scripter/scripter.js"></script>
+</head>
+<body>
+<div id="tabs">
+    <ul>
+        <li><a href="#create_user">Create User</a></li>
+        <li><a href="#create_table">Create Table</a></li>
+        <li><a href="#alter_table">Alter Table</a></li>
+    </ul>
+    <div id="create_user">
+        <h3>Create User</h3>
+        <form id="create_user_form">
+            <div class="form_field">database: <input type="text" name="database"></div>
+            <div class="form_field">host: <input type="text" name="host" class="host"></div>
+            <div class="form_field">username: <input type="text" name="username"></div>
+            <div class="form_field">password: <input type="text" name="password"></div>
+            <div class="form_field">privileges: all <input type="checkbox" id="create_user_privilege_all"></div>
+            <div class="form_field">
+                <label>
+                    <input type="checkbox" name="privileges" value="SELECT"> SELECT
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="INSERT"> INSERT
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="UPDATE"> UPDATE
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="DELETE"> DELETE
+                </label>
+            </div>
+            <div class="form_field">
+                <label>
+                    <input type="checkbox" name="privileges" value="CREATE"> CREATE
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="ALTER"> ALTER
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="INDEX"> INDEX
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="DROP"> DROP
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="CREATE TEMPORARY TABLES"> CREATE TEMPORARY TABLES
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="SHOW VIEW"> SHOW VIEW
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="CREATE ROUTINE"> CREATE ROUTINE
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="ALTER ROUTINE"> ALTER ROUTINE
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="EXECUTE"> EXECUTE
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="CREATE VIEW"> CREATE USER
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="EVENT"> EVENT
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="TRIGGER"> TRIGGER
+                </label>
+            </div>
+            <div class="form_field">
+                <label>
+                    <input type="checkbox" name="privileges" value="GRANT"> GRANT
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="SUPER"> SUPER
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="PROCESS"> PROCESS
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="RELOAD"> RELOAD
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="SHUTDOWN"> SHUTDOWN
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="SHOW DATABASES"> SHOW DATABASES
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="LOCK TABLES"> LOCK TABLES
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="REFERENCES"> REFERENCES
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="REPLICATION CLIENT"> REPLICATION CLIENT
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="REPLICATION SLAVE"> REPLICATION SLAVE
+                </label>
+                <label>
+                    <input type="checkbox" name="privileges" value="CREATE USER"> CREATE USER
+                </label>
+            </div>
+            <div class="form_field"><button type="submit" id="btn_create_user">Generate!</button></div>
+        </form>
+    </div>
+    <div id="create_table">
+        <h3>Create Table</h3>
+        <form id="create_table_form">
+            <div class="form_field">charset: <input type="text" name="charset" value="utf8"></div>
+            <div class="form_field">collation: <input type="text" name="collation" value="utf8_unicode_ci"></div>
+            <div class="form_field">engine:
+                <select name="engine">
+                    <option value="MRG_MYISAM" title="Collection of identical MyISAM tables"> MRG_MYISAM </option><option value="MyISAM" title="MyISAM storage engine"> MyISAM </option><option value="BLACKHOLE" title="/dev/null storage engine (anything you write to it disappears)"> BLACKHOLE </option>
+                    <option value="CSV" title="CSV storage engine">
+                    CSV
+                    </option>
+                    <option value="MEMORY" title="Hash based, stored in memory, useful for temporary tables">
+                    MEMORY
+                    </option>
+                    <option value="ARCHIVE" title="Archive storage engine">
+                    ARCHIVE
+                    </option>
+                    <option value="InnoDB" title="Supports transactions, row-level locking, and foreign keys" selected="selected">
+                    InnoDB
+                    </option>
+                </select>
+            </div>
+            <div class="form_field">table: <input type="text" name="table"></div>
+            <div class="form_field"><button type="button" id="btn_create_table_add_row">Add Row!</button></div>
+            <div class="form_field">
+                <table id="create_table_table">
+                    <thead>
+                        <tr><th>Name</th><th>Type</th><th>Length/Values</th><th>Default</th><th>Attributes</th><th>Null</th><th>Index</th><th>AI</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>⬍ <input type="text" name="name"></td>
+                        <td><select name="type"></select></td>
+                        <td><input type="text" name="length"></td>
+                        <td><input type="text" name="default"></td>
+                        <td><select name="attributes"><option value="" selected="selected"></option><option value="BINARY">BINARY</option><option value="UNSIGNED">UNSIGNED</option><option value="UNSIGNED ZEROFILL">UNSIGNED ZEROFILL</option><option value="on update CURRENT_TIMESTAMP">on update CURRENT_TIMESTAMP</option></select></td>
+                        <td><input type="checkbox" name="null"></td>
+                        <td><select name="index"><option>---</option><option value="primary">PRIMARY</option><option value="unique">UNIQUE</option><option value="index">INDEX</option><option value="fulltext">FULLTEXT</option></select></td>
+                        <td><input type="checkbox" name="auto_inrement"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="form_field"><button type="submit" id="btn_create_table">Generate!</button></div>
+        </form>
+    </div>
+    <div id="alter_table">
+        <h3>Alter Table</h3>
+        <h4>Change</h4>
+        <form id="alter_table_change_form">
+            <div class="form_field">table: <input type="text" name="table"></div>
+            <div class="form_field">old column name: <input type="text" name="old_name"></div>
+            <div class="form_field">after: <input type="text" name="after"></div>
+            <table id="alter_table_change_table">
+                <thead>
+                    <tr><th>Name</th><th>Type</th><th>Length/Values</th><th>Default</th><th>Attributes</th><th>Null</th><th>Index</th><th>AI</th></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text" name="name"></td>
+                    <td><select name="type"></select></td>
+                    <td><input type="text" name="length"></td>
+                    <td><input type="text" name="default"></td>
+                    <td><select name="attributes"><option value="" selected="selected"></option><option value="BINARY">BINARY</option><option value="UNSIGNED">UNSIGNED</option><option value="UNSIGNED ZEROFILL">UNSIGNED ZEROFILL</option><option value="on update CURRENT_TIMESTAMP">on update CURRENT_TIMESTAMP</option></select></td>
+                    <td><input type="checkbox" name="null"></td>
+                    <td><select name="index"><option>---</option><option value="primary">PRIMARY</option><option value="unique">UNIQUE</option><option value="index">INDEX</option><option value="fulltext">FULLTEXT</option></select></td>
+                    <td><input type="checkbox" name="auto_inrement"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="form_field"><button type="submit" id="btn_alter_table_change">Generate!</button></div>
+        </form>
+        <hr>
+        <h4>Add</h4>
+        <form id="alter_table_add_form">
+            <div class="form_field">table: <input type="text" name="table"></div>
+            <div class="form_field">after: <input type="text" name="after"></div>
+            <table id="alter_table_add_table">
+                <thead>
+                    <tr><th>Name</th><th>Type</th><th>Length/Values</th><th>Default</th><th>Attributes</th><th>Null</th><th>Index</th><th>AI</th></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="text" name="name"></td>
+                    <td><select name="type"></select></td>
+                    <td><input type="text" name="length"></td>
+                    <td><input type="text" name="default"></td>
+                    <td><select name="attributes"><option value="" selected="selected"></option><option value="BINARY">BINARY</option><option value="UNSIGNED">UNSIGNED</option><option value="UNSIGNED ZEROFILL">UNSIGNED ZEROFILL</option><option value="on update CURRENT_TIMESTAMP">on update CURRENT_TIMESTAMP</option></select></td>
+                    <td><input type="checkbox" name="null"></td>
+                    <td><select name="index"><option>---</option><option value="primary">PRIMARY</option><option value="unique">UNIQUE</option><option value="index">INDEX</option><option value="fulltext">FULLTEXT</option></select></td>
+                    <td><input type="checkbox" name="auto_inrement"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="form_field"><button type="submit" id="btn_alter_table_add">Generate!</button></div>
+        </form>
+        <hr>
+        <h4>Drop Column</h4>
+        <form id="alter_table_drop_column_form">
+            <div class="form_field">table: <input type="text" name="table"></div>
+            <div class="form_field">column: <input type="text" name="column"></div>
+            <div class="form_field"><button type="submit" id="btn_alter_table_drop_column">Generate!</button></div>
+        </form>
+    </div>
+</div>
+<div id="container"></div>
+</body>
+</html>

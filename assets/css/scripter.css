@@ -1,0 +1,9 @@
+body {
+    font-size: 12px;
+}
+.form_field {
+    margin: 12px 0;
+}
+#create_table_form tbody tr {
+    cursor: move;
+}
