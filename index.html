@@ -123,7 +123,9 @@
         <h3>Create Table</h3>
         <form id="create_table_form">
             <div class="form_field">charset: <input type="text" name="charset" value="utf8"></div>
-            <div class="form_field">collation: <input type="text" name="collation" value="utf8_unicode_ci"></div>
+            <div class="form_field">
+                collation: <select id="collation"></select>
+            </div>
             <div class="form_field">engine:
                 <select name="engine">
                     <option value="MRG_MYISAM" title="Collection of identical MyISAM tables"> MRG_MYISAM </option><option value="MyISAM" title="MyISAM storage engine"> MyISAM </option><option value="BLACKHOLE" title="/dev/null storage engine (anything you write to it disappears)"> BLACKHOLE </option>

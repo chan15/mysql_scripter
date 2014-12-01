@@ -16,6 +16,11 @@ $(function() {
     $('#tabs').tabs();
     $('button').button();
 
+    // Load collation
+    $.get('option-collation.html', {}, function(response) {
+        $.tmpl(response).appendTo('#collation');
+    });
+
     loadOption();
 
     // Check all privileges
