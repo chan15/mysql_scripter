@@ -105,10 +105,12 @@ $(function() {
                 script += "GRANT " + privileges.join(',') + " ON";
             }
 
-            if (createUserForm.find('[name="database"]').val() === '') {
+            var db = createUserForm.find('[name="database"]');
+
+            if (db.val() === '' || db.val() === '*') {
                 script += " *.*";
             } else {
-                script += " `" + createUserForm.find('[name="database"]').val() + "`.*";
+                script += " `" + db.val() + "`.*";
             }
 
             script += " TO '" + createUserForm.find('[name="username"]').val() + "'@'" + createUserForm.find('[name="host"]').val() + "'";
